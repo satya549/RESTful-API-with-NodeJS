@@ -1,5 +1,7 @@
 const express = require('express');
 const db = require('../src/db/connect')
+const MenRanking = require("../src/models/mens");
+
 
 const app = express();
 const port = process.env.PORT || 3400;
