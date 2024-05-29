@@ -29,6 +29,28 @@ app.get("/mens", async (req, res) => {
     }
 })
 
+app.get("/mens/:id", async (req, res) => {
+    try {
+        const _id = req.params.id
+        const getMen = await MenRanking.findById({_id})
+        res.send(getMen)
+    } catch (error) {
+        res.status(400).send(error);
+    }
+})
+
+app.patch("/mens/:id", async (req, res) => {
+    try {
+        const _id = req.params.id
+        const updateData = req.body;
+
+        const getMen = await MenRanking.findByIdAndUpdate({_id, updateData})
+        res.send(getMen)
+    } catch (error) {
+        res.status(400).send(error);
+    }
+})
+
 app.listen(port, () =>{
     console.log(`server running on http://localhost:${port}`)
 })
