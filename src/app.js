@@ -44,10 +44,23 @@ app.patch("/mens/:id", async (req, res) => {
         const _id = req.params.id
         const updateData = req.body;
 
-        const getMen = await MenRanking.findByIdAndUpdate({_id, updateData})
+        const getMen = await MenRanking.findByIdAndUpdate(_id, updateData,{
+            new: true
+        });
         res.send(getMen)
     } catch (error) {
-        res.status(400).send(error);
+        res.status(500).send(error);
+    }
+})
+
+app.delete("/mens/:id", async (req, res) => {
+    try {
+        const _id = req.params.id
+
+        const getMen = await MenRanking.findByIdAndDelete(_id)
+        res.send(getMen)
+    } catch (error) {
+        res.status(500).send(error);
     }
 })
 
