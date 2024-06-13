@@ -22,7 +22,7 @@ app.post("/mens", async (req, res) => {
 
 app.get("/mens", async (req, res) => {
     try {
-        const getMens = await MenRanking.find({})
+        const getMens = await MenRanking.find({}).sort({"ranking":1})
         res.send(getMens)
     } catch (error) {
         res.status(400).send(error);
